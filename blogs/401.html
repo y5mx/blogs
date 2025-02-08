@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+   <meta charset="UTF-8">
+   <link rel="shortcut icon" href="https://sirati.bh/assets/images/fav.png" type="image/x-icon">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>401 - لا يوجد صلاحيات وصول</title>
+   <style>
+       body {
+           font-family: "main", Arial, sans-serif;
+           background-color: #f4f8fb;
+           color: #0074d9;
+           text-align: center;
+           padding: 50px;
+       }
+       h2 {
+           font-size: 36px;
+           margin-bottom: 20px;
+           color: #0074d9;
+       }
+       p {
+           font-size: 18px;
+           margin-bottom: 20px;
+           color: #9193a8;
+       }
+       .search-container {
+           max-width: 400px;
+           margin: 0 auto;
+           text-align: left;
+       }
+       input[type="text"] {
+           width: 100%;
+           padding: 10px;
+           font-size: 16px;
+           margin-bottom: 10px;
+           border: 1px solid #0074d9;
+           border-radius: 4px;
+       }
+       ul {
+           list-style-type: none;
+           padding: 0;
+           border: 1px solid #0074d9;
+           border-radius: 4px;
+           background-color: #fff;
+       }
+       li {
+           padding: 10px;
+           cursor: pointer;
+           color: #0074d9;
+       }
+       li:hover {
+           background-color: #0054de;
+           color: #fff;
+       }
+   </style>
+</head>
+<body>
+   <h2>401</h2>
+   <h2>صالحيات الدخول غير صحيحة</h2>
+   <p>لا يمكننا الوصول الى الصفحة هاذة. قد تكون غير صحيحة او صلاحيات ناقصة.</p>
+   <div class="search-container">
+       <input type="text" id="search-input" placeholder="ابحث عن صفحات أخرى...">
+       <ul id="suggestions"></ul>
+   </div>
+   <script>
+       const searchInput = document.getElementById('search-input');
+       const suggestions = document.getElementById('suggestions');
+    const pages = [
+        { name: 'الصفحة الرئيسية', url: 'https://sirati.bh/index.php' },
+        { name: 'تسجيل الدخول', url: 'https://dashboard.sirati.bh/login.php' },
+        { name: 'تسجيل', url: 'https://dashboard.sirati.bh/register.php' },
+        { name: 'الشروط والقواعد', url: 'https://sirati.bh/legal/terms.php' }
+    ];
+       searchInput.addEventListener('input', function () {
+           const query = this.value.toLowerCase();
+           suggestions.innerHTML = '';
+           if (query) {
+               const filteredPages = pages.filter(page => page.name.toLowerCase().includes(query));
+               filteredPages.forEach(page => {
+                   const li = document.createElement('li');
+                   li.textContent = page.name;
+                   li.addEventListener('click', () => {
+                       window.location.href = page.url;
+                   });
+                   suggestions.appendChild(li);
+               });
+           }
+       });
+   </script>
+</body>
+</html>
